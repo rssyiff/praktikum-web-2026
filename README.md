@@ -11,8 +11,8 @@
 - Konfigurasi identitas Git global.
 
 ### Spesifikasi Perangkat
-**Sistem Operasi :** Windows 11 Pro 64-bit (10.0, Build 26200)
-**Kapasitas Ram :** 16384MB RAM
-**Versi node.js :** v24.21.0
-**Versi git :**  git version 2.54.0.windows.1
+* **Sistem Operasi :** Windows 11 Pro 64-bit (10.0, Build 26200)
+* **Kapasitas Ram :** 16384MB RAM
+* **Versi node.js :** v24.21.0
+* **Versi git :**  git version 2.54.0.windows.1
 
