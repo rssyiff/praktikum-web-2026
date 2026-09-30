@@ -1,7 +1,7 @@
 # Repositori Praktikum Pemrograman Web 2026
 **Informasi Mahasiswa:**
-* **Nama:** [Isi Nama Lengkap Anda]
-* **NIM:** [Isi NIM Anda]
+* **Nama:** As'syifa Ramdani
+* **NIM:** 2406011
 * **Kelas/Prodi:** Teknik Informatika - ITG
 * **Kode MK:** IFRWP5151
 ---
