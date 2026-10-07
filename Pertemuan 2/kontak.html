@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Kontak</title>
+</head>
+
+<body>
+
+```
+<header>
+    <h1>Formulir Kontak</h1>
+</header>
+
+<hr>
+
+<main>
+    <section>
+        <h2>Kirimkan Pesan atau Penawaran Proyek</h2>
+
+        <form action="#" method="post">
+
+            <p>
+                <label for="nama">Nama Lengkap Anda:</label>
+                <br>
+                <input
+                    type="text"
+                    id="nama"
+                    name="nama"
+                    required
+                >
+            </p>
+
+            <p>
+                <label for="email">Alamat Email:</label>
+                <br>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                >
+            </p>
+
+            <p>
+                <label for="layanan">Layanan yang Dibutuhkan:</label>
+                <br>
+                <select id="layanan" name="layanan" required>
+                    <option value="">-- Pilih Layanan --</option>
+                    <option value="pembuatan-web">
+                        Pembuatan Web
+                    </option>
+                    <option value="pengembangan-aplikasi">
+                        Pengembangan Aplikasi
+                    </option>
+                    <option value="lain-lain">
+                        Lain-lain
+                    </option>
+                </select>
+            </p>
+
+            <p>
+                <label for="pesan">Pesan:</label>
+                <br>
+                <textarea
+                    id="pesan"
+                    name="pesan"
+                    rows="6"
+                    cols="40"
+                    required
+                ></textarea>
+            </p>
+
+            <p>
+                <button type="submit">Kirim Pesan</button>
+                <button type="reset">Batal / Reset</button>
+            </p>
+
+        </form>
+    </section>
+</main>
+
+<hr>
+
+<footer>
+    <p>&copy; 2026 Teknik Informatika ITG</p>
+</footer>
+```
+
+</body>
+
+</html>
