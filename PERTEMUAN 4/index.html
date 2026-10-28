@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Portfolio Tracker</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, sans-serif;
+      }
+
+      body {
+        background-color: #f1f5f9;
+        color: #e97c90;
+        padding: 30px 15px;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        color: #ea6685;
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+
+      .subtitle {
+        color: #f68aaa;
+        margin-bottom: 20px;
+        font-size: 14px;
+      }
+
+      h2 {
+        font-size: 18px;
+        color: #ef3f6e;
+        margin-bottom: 15px;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .stat-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+      }
+
+      .stat-card h3 {
+        font-size: 13px;
+        color: #64748b;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .stat-card p {
+        font-size: 20px;
+        font-weight: bold;
+        color: #fc54ab;
+      }
+
+      .form-section {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 25px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 14px;
+        background: #ffffff;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        outline: 2px solid #93c5fd;
+        border-color: #eb2595;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+
+      .checkbox-group input {
+        width: 16px;
+        height: 16px;
+      }
+
+      .btn-primary {
+        width: 100%;
+        padding: 11px;
+        background: #e74590;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        background: #fe3981;
+      }
+
+      .filter-group {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+      }
+
+      .btn-filter {
+        padding: 8px 16px;
+        border: 1px solid #cbd5e1;
+        background: #ffffff;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .btn-filter.active,
+      .btn-filter:hover {
+        background: #e3667b;
+        color: #ffffff;
+        border-color: #e3667b;
+      }
+
+      .search-group {
+        margin-bottom: 20px;
+      }
+
+      .search-group input {
+        width: 100%;
+        padding: 11px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .project-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        background: #ffffff;
+        transition: transform 0.15s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .project-info {
+        min-width: 0;
+      }
+
+      .project-info h4 {
+        font-size: 16px;
+        color: #0f172a;
+        margin-bottom: 4px;
+        overflow-wrap: anywhere;
+      }
+
+      .project-category {
+        display: inline-block;
+        font-size: 12px;
+        color: #ef2c8e;
+        background: #e0f2fe;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+
+      .project-budget {
+        font-size: 14px;
+        color: #334155;
+        font-weight: 600;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .badge-success {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .badge-pending {
+        background: #fef9c3;
+        color: #854d0e;
+      }
+
+      .project-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      .btn-action {
+        padding: 7px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .btn-status {
+        background: #dbeafe;
+        color: #f92f87;
+      }
+
+      .btn-delete {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+
+      .empty-message {
+        text-align: center;
+        color: #f8b1db;
+        padding: 20px;
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 18px;
+        }
+
+        .project-card {
+          align-items: flex-start;
+        }
+
+        .project-actions {
+          max-width: 115px;
+        }
+
+        .btn-filter {
+          padding: 8px 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Portofolio Proyek</h1>
+      <p class="subtitle">Interactive Portfolio Tracker - Modul 4</p>
+
+      <!-- Kartu Ringkasan Statistik -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Proyek</h3>
+          <p id="stat-total-projects">0</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>Total Anggaran</h3>
+          <p id="stat-total-budget">Rp 0</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>Selesai Dikerjakan</h3>
+          <p id="stat-completed-projects">0</p>
+        </div>
+      </div>
+
+      <!-- Form Input Proyek Dinamis -->
+      <section class="form-section">
+        <h2>Tambah Proyek Baru</h2>
+
+        <form id="project-form">
+          <div class="form-group">
+            <label for="project-title">Judul Proyek</label>
+            <input
+              type="text"
+              id="project-title"
+              placeholder="Masukkan judul proyek"
+              required />
+          </div>
+
+          <div class="form-group">
+            <label for="project-category">Kategori</label>
+            <select id="project-category" required>
+              <option value="">-- Pilih Kategori --</option>
+              <option value="Web App">Web App</option>
+              <option value="Mobile App">Mobile App</option>
+              <option value="Desktop App">Desktop App</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="project-budget">Estimasi Anggaran (Rp)</label>
+            <input
+              type="number"
+              id="project-budget"
+              placeholder="Contoh: 2500000"
+              min="1"
+              step="1"
+              required />
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="project-completed" />
+            <label for="project-completed">Sudah Selesai</label>
+          </div>
+
+          <button type="submit" class="btn-primary">Tambahkan Proyek</button>
+        </form>
+      </section>
+
+      <h2>Daftar Proyek</h2>
+
+      <div class="filter-group">
+        <button type="button" class="btn-filter active" data-category="Semua">
+          Semua Proyek
+        </button>
+
+        <button type="button" class="btn-filter" data-category="Web App">
+          Web App
+        </button>
+
+        <button type="button" class="btn-filter" data-category="Desktop App">
+          Desktop App
+        </button>
+
+        <button type="button" class="btn-filter" data-category="Mobile App">
+          Mobile App
+        </button>
+
+        <button type="button" class="btn-filter" data-category="UI/UX Design">
+          UI/UX Design
+        </button>
+      </div>
+
+      <div class="search-group">
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Cari proyek berdasarkan judul..."
+          aria-label="Cari proyek berdasarkan judul" />
+      </div>
+
+      <div id="project-list"></div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
